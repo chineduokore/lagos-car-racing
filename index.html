@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Lagos Car Racing - Horizontal</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="gameBox">
+  <div id="road"></div>
+  <div id="scoreBoard">Score: 0<br>Speed: 0 km/h<br>💰 ₦0<br>🏆 Best: 0<br>Level: 1
+    <div id="fuelBox"><div id="fuelBar"></div></div>
+    <div style="font-size:12px;">⛽ Fuel</div>
+  </div>
+  <button id="pauseBtn" onclick="togglePause()">⏸️</button>
+  <div id="levelBanner">LEVEL 2! 🔥</div>
+  <div id="player" class="car">
+    <div class="window"></div>
+    <div class="window2"></div>
+    <div class="wheel" style="left:10px; top:-5px;"></div>
+    <div class="wheel" style="left:65px; top:-5px;"></div>
+    <div class="wheel" style="left:10px; bottom:-5px;"></div>
+    <div class="wheel" style="left:65px; bottom:-5px;"></div>
+  </div>
+  <div id="controls">
+    <div class="btn" id="upBtn">▲</div>
+    <div class="btn" id="brakeBtn">🛑<br><span>BRAKE</span></div>
+    <div class="btn" id="downBtn">▼</div>
+  </div>
+  <div id="gameOver">
+    <h1 id="gameOverTitle">CRASH! 💥</h1>
+    <p id="finalScore"></p>
+    <button onclick="restartGame()">Play Again</button>
+  </div>
+  <div id="pauseScreen" style="display:none;">
+    <h1>⏸️ PAUSED</h1>
+    <p>Take your break, Champion!</p>
+    <p id="pauseScore"></p>
+    <button onclick="togglePause()">▶️ RESUME</button><br>
+    <button onclick="restartGame()">🔄 RESTART</button>
+  </div>
+  <div id="startScreen">
+    <h1>🏎️ LAGOS CAR RACING</h1>
+    <p>↔️ HORIZONTAL MODE</p>
+    <p>▲ ▼ to move + HOLD 🛑 to brake together!</p>
+    <p>💰 Pick ₦ | ⛽ Pick Fuel</p>
+    <p>🏁 1 Ikeja | 2 Oshodi (30+) | 3 Island (60+) | 4 Lekki (100+)</p>
+    <button id="startBtn" onclick="startGame()">START GAME</button>
+    <p id="bestOnStart" style="margin-top:10px; color:#FFD700;"></p>
+  </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

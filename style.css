@@ -1,0 +1,75 @@
+* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color: transparent; }
+html, body { width:100%; height:100%; background:#000; overflow:hidden; }
+body { font-family: Arial; touch-action:none; }
+
+/* ===== EVERYTHING TURNS TOGETHER ===== */
+#gameBox {
+  position:fixed;
+  background:#333;
+  overflow:hidden;
+  transition: background 0.5s;
+  z-index:10;
+}
+
+/* PHONE DEY VERTICAL (portrait) -> FORCE TURN 90 DEGREES */
+@media (orientation: portrait) {
+  #gameBox {
+    width: 100vh !important;
+    height: 100vw !important;
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) rotate(90deg) !important;
+    transform-origin: center center !important;
+  }
+}
+
+/* PHONE DEY ALREADY HORIZONTAL -> NORMAL */
+@media (orientation: landscape) {
+  #gameBox {
+    width: 100vw !important;
+    height: 100vh !important;
+    left: 0 !important;
+    top: 0 !important;
+    transform: none !important;
+  }
+}
+
+#gameBox.level2 { background:#2A1A00; }
+#gameBox.level3 { background:#3A0000; }
+#gameBox.level4 { background:#1A003A; }
+#road { position:absolute; left:0; top:0; width:100%; height:100%; }
+.line { position:absolute; width:60px; height:6px; background:yellow; }
+.car { position:absolute; border-radius:12px; }
+#player { background:#FFD700; left:80px; top:50%; width:95px; height:55px; z-index:10; box-shadow:0 0 15px rgba(0,0,0,0.5); }
+.enemy { background:red; }
+.window { position:absolute; background:#111; width:22px; height:39px; left:18px; top:8px; border-radius:5px; }
+.window2 { position:absolute; background:#111; width:18px; height:39px; left:50px; top:8px; border-radius:5px; }
+.wheel { position:absolute; background:#000; width:22px; height:10px; }
+#scoreBoard { position:absolute; top:10px; left:10px; color:white; font-size:15px; font-weight:bold; z-index:20; background:rgba(0,0,0,0.6); padding:8px 12px; border-radius:10px; line-height:1.4; min-width:130px; }
+#fuelBox { width:100%; height:12px; background:#222; border:1px solid white; border-radius:6px; margin-top:6px; overflow:hidden; }
+#fuelBar { width:100%; height:100%; background:#00FF00; transition:width 0.2s; }
+#levelBanner { position:absolute; top:40%; left:0; width:100%; text-align:center; font-size:35px; font-weight:bold; color:#FFD700; z-index:55; display:none; text-shadow: 2px 2px 0 #000, -1px -1px 0 #000; }
+.money { position:absolute; width:35px; height:35px; background:#00CC00; border:3px solid #FFD700; border-radius:50%; color:white; font-size:20px; font-weight:bold; display:flex; align-items:center; justify-content:center; z-index:5; }
+.fuel-item { position:absolute; width:40px; height:40px; background:#FF8800; border:3px solid white; border-radius:8px; color:white; font-size:22px; font-weight:bold; display:flex; align-items:center; justify-content:center; z-index:5; }
+.vehicle-label { position:absolute; width:100%; text-align:center; font-size:10px; font-weight:bold; color:white; top:18px; left:0; }
+.keke { border-radius:10px 20px 20px 10px !important; }
+.okada { width:70px !important; height:35px !important; border-radius:15px !important; }
+#gameOver { position:absolute; top:30%; left:0; width:100%; text-align:center; color:white; display:none; z-index:30; background:rgba(0,0,0,0.7); padding:20px 10px; }
+#gameOver h1 { font-size:32px; color:#FF3333; margin-bottom:10px; }
+#gameOver p { font-size:18px; line-height:1.5; }
+#gameOver button { padding:12px 25px; font-size:18px; background:#FFD700; border:none; border-radius:10px; font-weight:bold; margin-top:15px; }
+#controls { position:absolute; bottom:10px; right:15px; display:flex; gap:12px; align-items:center; z-index:20; }
+.btn { width:75px; height:75px; background:rgba(255,255,255,0.9); border-radius:50%; font-size:32px; display:flex; align-items:center; justify-content:center; font-weight:bold; user-select:none; touch-action:none; }
+#brakeBtn { background:#FF3333 !important; color:white; width:85px !important; height:85px !important; flex-direction:column; font-size:26px !important; border:3px solid white; }
+#brakeBtn span { font-size:12px; }
+#brakeBtn.braking { background:#AA0000 !important; transform:scale(0.92); }
+#upBtn.pressed, #downBtn.pressed { background:#FFD700 !important; transform:scale(0.92); }
+#pauseBtn { position:absolute; top:10px; right:10px; z-index:50; background:white; border:none; padding:10px 14px; border-radius:10px; font-size:16px; font-weight:bold; }
+#pauseScreen { position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); color:white; z-index:60; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:20px; }
+#pauseScreen h1 { font-size:35px; margin-bottom:10px; }
+#pauseScreen p { margin:8px 0; color:#ccc; }
+#pauseScreen button { padding:13px 30px; font-size:18px; background:#FFD700; border:none; border-radius:12px; font-weight:bold; margin-top:10px; }
+#startScreen { position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.88); color:white; display:flex; flex-direction:column; align-items:center; justify-content:center; z-index:40; text-align:center; padding:20px; }
+#startScreen h1 { font-size:30px; margin-bottom:10px; }
+#startScreen p { margin:6px 0; color:#ccc; font-size:15px; }
+#startBtn { padding:15px 40px; font-size:20px; background:#FFD700; border:none; border-radius:12px; font-weight:bold; margin-top:20px; }
